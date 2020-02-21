@@ -211,7 +211,6 @@ mpich:
         spec.concretize()
         assert spec['mpich'].external_path == '/dummy/path'
 
-
     def test_external_module(self, save_module_func):
         """Test that packages can find externals specified by module
 
@@ -242,7 +241,6 @@ mpi:
         spec = Spec('mpi')
         spec.concretize()
         assert spec['mpich'].external_path == '/dummy/path'
-
 
     def test_config_permissions_from_all(self, configure_permissions):
         # Although these aren't strictly about concretization, they are
