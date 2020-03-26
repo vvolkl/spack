@@ -17,8 +17,6 @@ class Garply(Package):
         '3.0.0', sha256='f3d5fbfc69f764addf472298c0af905df7255d823ddb7a79bd4c2400794b3941',
          url="https://github.com/gartung/garply/releases/download/v3.0.0/garply-3.0.0.tar.gz")
 
-    depends_on('patchelf', type='build')
-
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)
         patchelf = which('patchelf')

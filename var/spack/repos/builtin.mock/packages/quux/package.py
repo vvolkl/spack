@@ -17,7 +17,6 @@ class Quux(Package):
             url="https://github.com/gartung/quux/releases/download/v3.0.0/quux-3.0.0.tar.gz")
 
     depends_on('garply')
-    depends_on('patchelf', type='build')
 
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)

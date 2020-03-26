@@ -158,6 +158,8 @@ def install_dir_non_default_layout(tmpdir):
     spack.store.layout = real_layout
 
 
+@pytest.mark.requires_executables(
+    '/usr/bin/gcc', 'patchelf', 'strings', 'file')
 @pytest.mark.disable_clean_stage_check
 @pytest.mark.maybeslow
 @pytest.mark.usefixtures('default_config', 'cache_directory',
@@ -174,15 +176,10 @@ def test_default_rpaths_create_install_default_layout(tmpdir,
     gspec.concretize()
     cspec = Spec('corge')
     cspec.concretize()
-    pspec = Spec('patchelf')
-    pspec.concretize()
 
     # Install patchelf needed for relocate in linux test environment
     iparser = argparse.ArgumentParser()
     install.setup_parser(iparser)
-    if platform.system().lower() != 'darwin':
-        iargs = iparser.parse_args(['--no-cache', pspec.name])
-        install.install(iparser, iargs)
     # Install some packages with dependent packages
     iargs = iparser.parse_args(['--no-cache', cspec.name])
     install.install(iparser, iargs)
@@ -205,13 +202,6 @@ def test_default_rpaths_create_install_default_layout(tmpdir,
     create_args = ['create', '-a', '-u', '-d', str(mirror_path_def),
                    cspec.name]
     install_args = ['install', '-a', '-u', cspec.name]
-
-    # Create a buildache of patchelf
-    if platform.system().lower() != 'darwin':
-        args = parser.parse_args(['create', '-a', '-u', '-d',
-                                  str(mirror_path_def),
-                                  pspec.name])
-        buildcache.buildcache(parser, args)
 
     # Create a buildache
     args = parser.parse_args(create_args)
@@ -260,6 +250,8 @@ def test_default_rpaths_create_install_default_layout(tmpdir,
     mirror.mirror(mparser, margs)
 
 
+@pytest.mark.requires_executables(
+    '/usr/bin/gcc', 'patchelf', 'strings', 'file')
 @pytest.mark.disable_clean_stage_check
 @pytest.mark.maybeslow
 @pytest.mark.nomockstage
@@ -276,8 +268,6 @@ def test_default_rpaths_install_nondefault_layout(tmpdir,
     gspec.concretize()
     cspec = Spec('corge')
     cspec.concretize()
-    pspec = Spec('patchelf')
-    pspec.concretize()
 
     global mirror_path_def
     mparser = argparse.ArgumentParser()
@@ -292,11 +282,6 @@ def test_default_rpaths_install_nondefault_layout(tmpdir,
 
     # Set default buildcache args
     install_args = ['install', '-a', '-u', cspec.name]
-
-    # Install patchelf needed for relocate in linux test environment
-    if platform.system().lower() != 'darwin':
-        args = parser.parse_args(['install', '-a', '-u', pspec.name])
-        buildcache.buildcache(parser, args)
 
     # Install some packages with dependent packages
     # test install in non-default install path scheme
@@ -314,6 +299,8 @@ def test_default_rpaths_install_nondefault_layout(tmpdir,
     mirror.mirror(mparser, margs)
 
 
+@pytest.mark.requires_executables(
+    '/usr/bin/gcc', 'patchelf', 'strings', 'file')
 @pytest.mark.disable_clean_stage_check
 @pytest.mark.maybeslow
 @pytest.mark.nomockstage
@@ -331,17 +318,12 @@ def test_relative_rpaths_create_default_layout(tmpdir,
     gspec.concretize()
     cspec = Spec('corge')
     cspec.concretize()
-    pspec = Spec('patchelf')
-    pspec.concretize()
 
     global mirror_path_rel
     mirror_path_rel = mirror_directory_rel
     # Install patchelf needed for relocate in linux test environment
     iparser = argparse.ArgumentParser()
     install.setup_parser(iparser)
-    if platform.system().lower() != 'darwin':
-        iargs = iparser.parse_args(['--no-cache', pspec.name])
-        install.install(iparser, iargs)
     # Install some packages with dependent packages
     iargs = iparser.parse_args(['--no-cache', cspec.name])
     install.install(iparser, iargs)
@@ -369,6 +351,8 @@ def test_relative_rpaths_create_default_layout(tmpdir,
     spack.stage.purge()
 
 
+@pytest.mark.requires_executables(
+    '/usr/bin/gcc', 'patchelf', 'strings', 'file')
 @pytest.mark.disable_clean_stage_check
 @pytest.mark.maybeslow
 @pytest.mark.nomockstage
@@ -385,8 +369,6 @@ def test_relative_rpaths_install_default_layout(tmpdir,
     gspec.concretize()
     cspec = Spec('corge')
     cspec.concretize()
-    pspec = Spec('patchelf')
-    pspec.concretize()
 
     global mirror_path_rel
     mparser = argparse.ArgumentParser()
@@ -398,9 +380,6 @@ def test_relative_rpaths_install_default_layout(tmpdir,
     # Install patchelf needed for relocate in linux test environment
     iparser = argparse.ArgumentParser()
     install.setup_parser(iparser)
-    if platform.system().lower() != 'darwin':
-        iargs = iparser.parse_args(['--no-cache', pspec.name])
-        install.install(iparser, iargs)
 
     # setup argument parser
     parser = argparse.ArgumentParser()
@@ -438,6 +417,8 @@ def test_relative_rpaths_install_default_layout(tmpdir,
     mirror.mirror(mparser, margs)
 
 
+@pytest.mark.requires_executables(
+    '/usr/bin/gcc', 'patchelf', 'strings', 'file')
 @pytest.mark.disable_clean_stage_check
 @pytest.mark.maybeslow
 @pytest.mark.nomockstage
@@ -454,8 +435,6 @@ def test_relative_rpaths_install_nondefault(tmpdir,
     gspec.concretize()
     cspec = Spec('corge')
     cspec.concretize()
-    pspec = Spec('patchelf')
-    pspec.concretize()
 
     global mirror_path_rel
 
@@ -468,9 +447,6 @@ def test_relative_rpaths_install_nondefault(tmpdir,
     # Install patchelf needed for relocate in linux test environment
     iparser = argparse.ArgumentParser()
     install.setup_parser(iparser)
-    if platform.system().lower() != 'darwin':
-        iargs = iparser.parse_args(['--no-cache', pspec.name])
-        install.install(iparser, iargs)
 
     # setup argument parser
     parser = argparse.ArgumentParser()

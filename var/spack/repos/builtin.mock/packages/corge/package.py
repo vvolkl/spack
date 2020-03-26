@@ -18,7 +18,6 @@ class Corge(Package):
         url="https://github.com/gartung/corge/releases/download/v3.0.0/corge-3.0.0.tar.gz")
 
     depends_on('quux')
-    depends_on('patchelf', type='build')
 
     def install(self, spec, prefix):
         install_tree(self.stage.source_path, prefix)
