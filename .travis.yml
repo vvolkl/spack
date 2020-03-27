@@ -84,7 +84,6 @@ addons:
       - kcov
       - mercurial
       - ninja-build
-      - patchelf
       - perl
       - perl-base
       - realpath
@@ -119,6 +118,7 @@ before_install:
         virtualenv venv;
         source venv/bin/activate;
     fi
+  - share/spack/qa/install_patchelf.sh
   - ccache -M 2G && ccache -z
 
 # Install various dependencies
