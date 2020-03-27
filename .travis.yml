@@ -84,6 +84,7 @@ addons:
       - kcov
       - mercurial
       - ninja-build
+      - patchelf
       - perl
       - perl-base
       - realpath
