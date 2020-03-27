@@ -461,3 +461,6 @@ def test_relative_rpaths_install_nondefault(tmpdir,
 
     bindist._cached_specs = set()
     spack.stage.purge()
+    margs = mparser.parse_args(
+        ['rm', '--scope', 'site', 'test-mirror-rel'])
+    mirror.mirror(mparser, margs)
