@@ -287,7 +287,7 @@ class PyTorch(PythonPackage, CudaPackage):
         enable_or_disable('zstd', newer=True)
         enable_or_disable('tbb', newer=True)
 
-    def buildtest(self):
+    def build_test(self):
         pass
 
     def install_test(self):
