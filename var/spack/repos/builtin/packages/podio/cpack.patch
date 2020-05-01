@@ -1,0 +1,14 @@
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9a1ab16..7f7ebd9 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -86,7 +86,7 @@ include(cmake/podioMacros.cmake)
+ include(CTest)
+ 
+ #--- enable CPack --------------------------------------------------------------
+-include(cmake/podioCPack.cmake)
++#include(cmake/podioCPack.cmake)
+ 
+ #--- target for Doxygen documentation ------------------------------------------
+
