@@ -30,8 +30,8 @@ system_dirs = [os.path.join(p, s) for s in suffixes for p in system_paths] + \
 
 
 _shell_set_strings = {
-    'sh': 'export {0}={1};\n',
-    'csh': 'setenv {0} {1};\n',
+    'sh': 'export {0}={1}:${0};\n',
+    'csh': 'setenv {0} {1}:${0};\n',
 }
 
 
@@ -537,7 +537,7 @@ class EnvironmentModifications(object):
     def shell_modifications(self, shell='sh'):
         """Return shell code to apply the modifications and clears the list."""
         modifications = self.group_by_name()
-        new_env = os.environ.copy()
+        new_env = {} #os.environ.copy()
 
         for name, actions in sorted(modifications.items()):
             for x in actions:
@@ -550,7 +550,8 @@ class EnvironmentModifications(object):
             old = os.environ.get(name, None)
             if new != old:
                 if new is None:
-                    cmds += _shell_unset_strings[shell].format(name)
+                    #&cmds += _shell_unset_strings[shell].format(name)
+                    pass
                 else:
                     cmds += _shell_set_strings[shell].format(
                         name, cmd_quote(new_env[name]))
