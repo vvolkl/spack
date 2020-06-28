@@ -71,6 +71,8 @@ class Whizard(AutotoolsPackage):
 
         return args
 
+    filter_compiler_wrappers('cc', 'cpp', 'gcc', 'gfortran', 'fc', relative_root='bin')
+
     def url_for_version(self, version):
         major = str(version[0])
         minor = str(version[1])
