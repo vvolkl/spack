@@ -347,6 +347,7 @@ class Root(CMakePackage):
                 ['chirp', False],
                 ['cling', True],
                 ['cocoa', 'aqua'],
+                ['dataframe', True],
                 ['davix'],
                 ['dcache', False],
                 ['fftw3', 'fftw'],
@@ -482,6 +483,15 @@ class Root(CMakePackage):
         if '+opengl' in spec:
             add_include_path('glew')
             add_include_path('mesa-glu')
+
+        # eems incompatible with
+        # filter_compiler_wrappers, thus the
+        # actual compilers need to be used to build
+        env.set('CC', self.compiler.cc)
+        env.set('CXX', self.compiler.cxx)
+        env.set('FC', self.compiler.fc)
+        env.set('F77', self.compiler.fc)
+
 
     def setup_run_environment(self, env):
         env.set('ROOTSYS', self.prefix)
