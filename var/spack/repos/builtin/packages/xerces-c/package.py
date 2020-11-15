@@ -31,6 +31,14 @@ class XercesC(AutotoolsPackage):
             multi=False,
             description='Use the specified C++ standard when building')
 
+    variant('netaccessor',
+            default='curl',
+            # todo: add additional values (platform-specific)
+            # 'socket', 'cfurl', 'winsock'
+            values=('curl', 'none'),
+            multi=False,
+            description='Net Accessor (used to access network resources')
+
     # It's best to be explicit about the transcoder or else xerces may
     # choose another value.
     if sys.platform == 'darwin':
@@ -67,7 +75,12 @@ class XercesC(AutotoolsPackage):
 
     def configure_args(self):
         spec = self.spec
-        args = ['--disable-network']
+        args = []
+
+        if 'netaccessor=curl' in spec:
+            args.append('--enable-netaccessor-curl')
+        else:
+            args.append('--disable-network')
 
         if 'transcoder=gnuiconv' in spec:
             args.append('--enable-transcoder-gnuiconv')
