@@ -33,6 +33,9 @@ class Dd4hep(CMakePackage):
     version('1.11.0', sha256='25643296f15f9d11ad4ad550b7c3b92e8974fc56f1ee8e4455501010789ae7b6')
     version('1.10.0', sha256='1d6b5d1c368dc8bcedd9c61b7c7e1a44bad427f8bd34932516aff47c88a31d95')
 
+    generator = 'Ninja'
+
+
     # Workarounds for various TBB issues in DD4hep v1.11
     # See https://github.com/AIDASoft/DD4hep/pull/613 .
     patch('tbb-workarounds.patch', when='@1.11.0')
