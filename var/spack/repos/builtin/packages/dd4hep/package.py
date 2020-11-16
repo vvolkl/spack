@@ -49,6 +49,7 @@ class Dd4hep(CMakePackage):
     variant('debug', default=False, description="Enable debug build")
 
     depends_on('cmake @3.12:', type='build')
+    depends_on('ninja', type='build')
     depends_on('boost @1.49:')
     depends_on('root @6.08: +gdml +math +opengl +python +x')
     extends('python')
