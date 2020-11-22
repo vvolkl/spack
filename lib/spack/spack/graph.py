@@ -48,6 +48,7 @@ from heapq import heapify, heappop, heappush
 from llnl.util.tty.color import ColorStream
 
 from spack.dependency import all_deptypes, canonical_deptype
+import spack.repo
 
 
 __all__ = ['topological_sort', 'graph_ascii', 'AsciiGraph', 'graph_dot']
@@ -507,6 +508,14 @@ def graph_dot(specs, deptype='all', static=False, out=None):
         pkg = spec.package
         possible = pkg.possible_dependencies(
             expand_virtuals=True, deptype=deptype)
+        packages_with_tags = set(
+            spack.repo.path.packages_with_tags('key4hep'))
+        out.write('packages_with_tags')
+        print(packages_with_tags)
+        sorted_packages = set(possible) & packages_with_tags
+        sorted_packages = sorted(sorted_packages)
+        possible = sorted_packages
+   
 
         nodes = set()  # elements are (node name, node label)
         edges = set()  # elements are (src key, dest key)
@@ -519,10 +528,15 @@ def graph_dot(specs, deptype='all', static=False, out=None):
         nodes = set()  # elements are (node key, node label)
         edges = set()  # elements are (src key, dest key)
         for s in spec.traverse(deptype=deptype):
-            nodes.add((s.dag_hash(), s.name))
-            for d in s.dependencies(deptype=deptype):
-                edge = (s.dag_hash(), d.dag_hash())
-                edges.add(edge)
+            pkg = s.package
+            tags = getattr(pkg, 'tags', [])
+            if 'hep' in tags:
+              nodes.add((s.dag_hash(), s.name))
+              for d in s.dependencies(deptype=deptype):
+                tags = getattr(d.package, 'tags', [])
+                if 'hep' in tags:
+                  edge = (s.dag_hash(), d.dag_hash())
+                  edges.add(edge)
         return nodes, edges
 
     nodes = set()
