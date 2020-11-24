@@ -321,6 +321,15 @@ class URLFetchStrategy(FetchStrategy):
             raise FailedDownloadError(url)
 
     def _existing_url(self, url):
+        # first, try the range request, if that fails
+        # try again with header request
+        if not self._check_existing_url_by_range_request(url):
+            return self._check_existing_url_by_header_request(url)
+        else:
+            # if range request was successful, skip second check
+            return True
+
+    def _check_existing_url_by_range_request(self, url):
         tty.debug('Checking existence of {0}'.format(url))
         curl = self.curl
         # Telling curl to fetch the first byte (-r 0-0) is supposed to be
@@ -328,6 +337,14 @@ class URLFetchStrategy(FetchStrategy):
         curl_args = ['--stderr', '-', '-s', '-f', '-r', '0-0', url]
         if not spack.config.get('config:verify_ssl'):
             curl_args.append('-k')
+        _ = curl(*curl_args, fail_on_error=False, output=os.devnull)
+        return curl.returncode == 0
+
+    def _check_existing_url_by_header_request(self, url):
+        tty.debug('Checking existence of {0}'.format(url))
+        curl = self.curl
+        # Try a header request to the url
+        curl_args = ['--stderr', '-', '-s', '-f', '-I', url]
         _ = curl(*curl_args, fail_on_error=False, output=os.devnull)
         return curl.returncode == 0
 
