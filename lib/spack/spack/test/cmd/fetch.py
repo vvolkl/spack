@@ -44,3 +44,13 @@ def test_fetch_multiple_specs(
 def test_fetch_no_argument():
     with pytest.raises(SpackCommandError):
         SpackCommand("fetch")()
+
+versions = SpackCommand('fetch')
+
+
+@pytest.mark.network
+@pytest.mark.usefixtures('mock_packages')
+def test_fetch_commit_extrapolation():
+    """Test the git commit extrapolation of a version."""
+
+    versions('--no-checksum', 'brillig@commit.e03d9f58a')

@@ -43,7 +43,7 @@ VALID_VERSION = re.compile(r'^[A-Za-z0-9_.-]+$')
 SEGMENT_REGEX = re.compile(r'(?:(?P<num>[0-9]+)|(?P<str>[a-zA-Z]+))(?P<sep>[_.-]*)')
 
 # Infinity-like versions. The order in the list implies the comparison rules
-infinity_versions = ['develop', 'main', 'master', 'head', 'trunk']
+infinity_versions = ['develop', 'main', 'master', 'head', 'trunk', 'commit']
 
 iv_min_len = min(len(s) for s in infinity_versions)
 
