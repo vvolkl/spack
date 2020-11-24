@@ -1267,6 +1267,16 @@ def _check_version_attributes(fetcher, pkg, version):
 
 def _extrapolate(pkg, version):
     """Create a fetcher from an extrapolated URL for this version."""
+
+    # handle special version 'commit-1234abc':
+    # build from commit '1234abc'
+    if version[0] == 'commit':
+        if len(version) == 2:
+            return GitFetchStrategy(git=pkg.git,
+                                    # make sure to get the commit unchanged
+                                    commit=str(version.dashed).split('-')[1],
+                                    )
+
     try:
         return URLFetchStrategy(pkg.url_for_version(version),
                                 fetch_options=pkg.fetch_options)
