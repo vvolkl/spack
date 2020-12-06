@@ -1270,11 +1270,12 @@ def _extrapolate(pkg, version):
 
     # handle special version 'commit-1234abc':
     # build from commit '1234abc'
-    if version[0] == 'commit':
-        if len(version) == 2:
+    # convert to string to make sure to get the commit unchanged
+    _versionstrlist = str(version.dashed).split('-')
+    if _versionstrlist[0] == 'commit':
+        if len(_versionstrlist) == 2:
             return GitFetchStrategy(git=pkg.git,
-                                    # make sure to get the commit unchanged
-                                    commit=str(version.dashed).split('-')[1],
+                                    commit=_versionstrlist[1],
                                     )
 
     try:
