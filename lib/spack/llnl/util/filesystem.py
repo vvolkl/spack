@@ -320,7 +320,10 @@ def chmod_x(entry, perms):
             perms &= ~stat.S_IXUSR
             perms &= ~stat.S_IXGRP
             perms &= ~stat.S_IXOTH
-    os.chmod(entry, perms)
+    try:
+        os.chmod(entry, perms)
+    except PermissionError:
+        pass
 
 
 def copy_mode(src, dest):
@@ -594,11 +597,17 @@ def mkdirp(*paths, **kwargs):
 
                 # leaf folder permissions
                 if mode is not None:
-                    os.chmod(path, mode)
+                    try: 
+                        os.chmod(path, mode)
+                    except PermissionError:
+                        pass
                 if group:
                     chgrp_if_not_world_writable(path, group)
                     if mode is not None:
-                        os.chmod(path, mode)  # reset sticky grp bit post chgrp
+                        try:
+                            os.chmod(path, mode)  # reset sticky grp bit post chgrp
+                        except PermissionError:
+                            pass
 
                 # for intermediate folders, change mode just for newly created
                 # ones and if mode_intermediate has been specified, otherwise
