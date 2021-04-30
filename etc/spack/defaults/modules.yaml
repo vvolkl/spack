@@ -18,6 +18,17 @@ modules:
   prefix_inspections:
     bin:
       - PATH
+    lib:
+      - LIBRARY_PATH
+    lib64:
+      - LIBRARY_PATH
+    include:
+      - C_INCLUDE_PATH
+      - CPLUS_INCLUDE_PATH
+      # The INCLUDE env variable specifies paths to look for
+      # .mod file for Intel Fortran compilers
+      - INCLUDE
+      - CPATH
     man:
       - MANPATH
     share/man:
