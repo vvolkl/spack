@@ -17,6 +17,8 @@ class ManDb(AutotoolsPackage):
 
     version('2.7.6.1', sha256='dd913662e341fc01e6721878b6cbe1001886cc3bfa6632b095937bba3238c779')
 
+    patch('maxdirs.patch')
+
     depends_on('autoconf')
     depends_on('automake')
     depends_on('gettext')
