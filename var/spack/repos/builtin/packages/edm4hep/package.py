@@ -41,6 +41,9 @@ class Edm4hep(CMakePackage):
                     self.spec.variants['cxxstd'].value))
         return args
 
+    def setup_run_environment(self, env):
+        env.prepend_path('ROOT_INCLUDE_PATH', self.prefix.include)
+
     def url_for_version(self, version):
         """Translate version numbers to ilcsoft conventions.
         in spack, the convention is: 0.1 (or 0.1.0) 0.1.1, 0.2, 0.2.1 ...

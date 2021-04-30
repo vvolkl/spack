@@ -54,6 +54,7 @@ class Podio(CMakePackage):
 
     def setup_run_environment(self, env):
         env.prepend_path('PYTHONPATH', self.prefix.python)
+        env.prepend_path('ROOT_INCLUDE_PATH', self.prefix.include)
 
     def url_for_version(self, version):
         """Translate version numbers to ilcsoft conventions.
