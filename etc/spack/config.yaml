@@ -4,4 +4,6 @@ config:
       tcl:    ~/.spack/share/spack/modules
       lmod:   ~/.spack/share/spack/lmod
   ccache: true
+  source_cache: ~/.spack/var/spack/source_cache
+  misc_cache: ~/.spack/var/spack/cache
 
