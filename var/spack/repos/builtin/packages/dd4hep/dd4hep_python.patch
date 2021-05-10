@@ -1,0 +1,40 @@
+diff --git a/cmake/DD4hepBuild.cmake b/cmake/DD4hepBuild.cmake
+index 6a2ddde..9b8b02c 100644
+--- a/cmake/DD4hepBuild.cmake
++++ b/cmake/DD4hepBuild.cmake
+@@ -673,21 +673,21 @@ endfunction(dd4hep_add_plugin)
+ #
+ macro(DD4HEP_SETUP_ROOT_TARGETS)
+ 
+-  #Check if Python version detected matches the version used to build ROOT
+-  SET(Python_FIND_FRAMEWORK LAST)
+-  IF((TARGET ROOT::PyROOT OR TARGET ROOT::ROOTTPython) AND ${ROOT_VERSION} VERSION_GREATER_EQUAL 6.19)
+-    # some cmake versions don't include python patch level in PYTHON_VERSION
+-    IF(CMAKE_VERSION VERSION_GREATER_EQUAL 3.16.0 AND CMAKE_VERSION VERSION_LESS_EQUAL 3.17.2)
+-      string(REGEX MATCH [23]\.[0-9]+ REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
+-    ELSE()
+-      SET(REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
+-    ENDIF()
+-    dd4hep_debug("D++> Python version used for building ROOT ${ROOT_PYTHON_VERSION}" )
+-    dd4hep_debug("D++> Required python version ${REQUIRE_PYTHON_VERSION}")
+-    FIND_PACKAGE(Python ${REQUIRE_PYTHON_VERSION} EXACT REQUIRED COMPONENTS Development)
+-  ELSE()
++	#  #Check if Python version detected matches the version used to build ROOT
++	#  SET(Python_FIND_FRAMEWORK LAST)
++	#  IF((TARGET ROOT::PyROOT OR TARGET ROOT::ROOTTPython) AND ${ROOT_VERSION} VERSION_GREATER_EQUAL 6.19)
++	#    # some cmake versions don't include python patch level in PYTHON_VERSION
++	#    IF(CMAKE_VERSION VERSION_GREATER_EQUAL 3.16.0 AND CMAKE_VERSION VERSION_LESS_EQUAL 3.17.2)
++	#      string(REGEX MATCH [23]\.[0-9]+ REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
++	#    ELSE()
++	#      SET(REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
++	#    ENDIF()
++	#    dd4hep_debug("D++> Python version used for building ROOT ${ROOT_PYTHON_VERSION}" )
++	#    dd4hep_debug("D++> Required python version ${REQUIRE_PYTHON_VERSION}")
++	#    FIND_PACKAGE(Python ${REQUIRE_PYTHON_VERSION} EXACT REQUIRED COMPONENTS Development)
++	#  ELSE()
+     FIND_PACKAGE(Python COMPONENTS Development)
+-  ENDIF()
++	#  ENDIF()
+ 
+   SET(DD4HEP_PYTHON_INSTALL_DIR lib/python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}/site-packages)
+ 

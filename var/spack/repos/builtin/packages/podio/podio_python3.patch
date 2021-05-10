@@ -1,0 +1,36 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 272cdf3..f3315f8 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -74,19 +74,19 @@ if (NOT "cxx_std_17" IN_LIST ROOT_COMPILE_FEATURES)
+ endif()
+ #Check if Python version detected matches the version used to build ROOT
+ SET(Python_FIND_FRAMEWORK LAST)
+-IF((TARGET ROOT::PyROOT OR TARGET ROOT::ROOTTPython) AND ${ROOT_VERSION} VERSION_GREATER_EQUAL 6.19)
+-  # cmake 3.17.1 and 3.17.2 don't include python patch level in PYTHON_VERSION
+-  IF(CMAKE_VERSION VERSION_EQUAL 3.17.1 OR CMAKE_VERSION VERSION_EQUAL 3.17.2)
+-    string(REGEX MATCH [23]\.[0-9]+ REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
+-  ELSE()
+-    SET(REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
+-  ENDIF()
+-  message( STATUS "Python version used for building ROOT ${ROOT_PYTHON_VERSION}" )
+-  message( STATUS "Required python version ${REQUIRE_PYTHON_VERSION}")
+-  FIND_PACKAGE(Python ${REQUIRE_PYTHON_VERSION} EXACT REQUIRED COMPONENTS Development)
+-ELSE()
++#IF((TARGET ROOT::PyROOT OR TARGET ROOT::ROOTTPython) AND ${ROOT_VERSION} VERSION_GREATER_EQUAL 6.19)
++#  # some cmake versions don't include python patch level in PYTHON_VERSION
++#  IF(CMAKE_VERSION VERSION_GREATER_EQUAL 3.16.0 AND CMAKE_VERSION VERSION_LESS_EQUAL 3.17.2)
++#    string(REGEX MATCH [23]\.[0-9]+ REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
++#  ELSE()
++#    SET(REQUIRE_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
++#  ENDIF()
++#  message( STATUS "Python version used for building ROOT ${ROOT_PYTHON_VERSION}" )
++#  message( STATUS "Required python version ${REQUIRE_PYTHON_VERSION}")
++#  FIND_PACKAGE(Python ${REQUIRE_PYTHON_VERSION} EXACT REQUIRED COMPONENTS Development)
++#ELSE()
+   FIND_PACKAGE(Python COMPONENTS Development)
+-ENDIF()
++#ENDIF()
+ 
+ # ROOT only sets usage requirements from 6.14, so for
+ # earlier versions need to hack in INTERFACE_INCLUDE_DIRECTORIES

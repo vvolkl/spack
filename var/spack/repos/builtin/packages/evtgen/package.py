@@ -27,6 +27,7 @@ class Evtgen(CMakePackage):
     variant('hepmc3', default=False, description='Link with hepmc3 (instead of hepmc)')
 
     patch("g2c.patch", when='@01.07.00')
+    patch('findpythia8_2.patch', when='@02.00.00:')
 
     depends_on('hepmc', when='~hepmc3')
     depends_on('hepmc3', when='+hepmc3')
@@ -101,3 +102,7 @@ class Evtgen(CMakePackage):
 
     def setup_run_environment(self, env):
         env.set("EVTGEN", self.prefix.share)
+
+    def setup_build_environment(self, env):
+        if '+pythia8' in self.spec:
+            env.set("PYTHIA8_ROOT_DIR", self.spec['pythia8'].prefix)

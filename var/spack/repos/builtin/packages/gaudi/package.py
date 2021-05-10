@@ -33,7 +33,7 @@ class Gaudi(CMakePackage):
             description='Build documentation with Doxygen')
     variant('vtune', default=False,
             description='Build with Intel VTune profiler support')
-
+    patch('gaudi_boost_gentoo.patch')
     # only build subdirectory GaudiExamples when +optional
     patch("build_testing.patch", when="@:34.99")
     # fixes for the cmake config which could not find newer boost versions
