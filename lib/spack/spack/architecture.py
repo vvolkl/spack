@@ -490,8 +490,8 @@ def arch_for_spec(arch_spec):
     assert arch_spec.concrete
 
     arch_plat = get_platform(arch_spec.platform)
-    if not (arch_plat.operating_system(arch_spec.os) and
-            arch_plat.target(arch_spec.target)):
+    #if not #(arch_plat.operating_system(arch_spec.os) and
+    if not arch_plat.target(arch_spec.target):
         raise ValueError(
             "Can't recreate arch for spec %s on current arch %s; "
             "spec architecture is too different" % (arch_spec, sys_type()))

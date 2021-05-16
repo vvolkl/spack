@@ -165,6 +165,7 @@ class CMakePackage(PackageBase):
             '-G', generator,
             define('CMAKE_INSTALL_PREFIX', pkg.prefix),
             define('CMAKE_BUILD_TYPE', build_type),
+            define('CMAKE_CXX_STANDARD', '17'),
         ]
 
         # CMAKE_INTERPROCEDURAL_OPTIMIZATION only exists for CMake >= 3.9

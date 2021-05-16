@@ -92,6 +92,8 @@ class Acts(CMakePackage, CudaPackage):
     version('0.08.1', commit='289bdcc320f0b3ff1d792e29e462ec2d3ea15df6')
     version('0.08.0', commit='99eedb38f305e3a1cd99d9b4473241b7cd641fa9')
 
+    #patch('acts_boost_prefix.patch')
+
     # Variants that affect the core Acts library
     variant('benchmarks', default=False, description='Build the performance benchmarks')
     variant('examples', default=False, description='Build the examples')

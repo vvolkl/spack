@@ -35,6 +35,7 @@ class Podio(CMakePackage):
     # cpack config throws an error on some systems
     patch('cpack.patch', when="@:0.10.0")
     patch('dictloading.patch', when="@0.10.0")
+    patch('podio_python3.patch')
 
     depends_on('root@6.08.06: cxxstd=17')
 

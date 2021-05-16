@@ -44,6 +44,7 @@ class Dd4hep(CMakePackage):
     # See https://github.com/AIDASoft/DD4hep/pull/613 .
     patch('tbb-workarounds.patch', when='@1.11')
     patch('tbb2.patch', when='@1.12.1')
+    patch('dd4hep_python.patch')
 
     variant('xercesc', default=False, description="Enable 'Detector Builders' based on XercesC")
     variant('geant4', default=False, description="Enable the simulation part based on Geant4")
