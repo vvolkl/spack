@@ -27,6 +27,7 @@ class Freeglut(CMakePackage, SourceforgePackage):
     depends_on('inputproto')
 
     patch('common-gcc10.patch', when="@3.2.1: %gcc@10.0:")
+    patch('common_patch_clang.patch', when="@3.2.1: %clang@11.0:")
 
     def cmake_args(self):
         return [
