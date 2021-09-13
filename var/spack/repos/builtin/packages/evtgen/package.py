@@ -11,12 +11,13 @@ class Evtgen(CMakePackage):
         the decays of heavy flavour particles, primarily B and D mesons. """
 
     homepage = "https://evtgen.hepforge.org/"
-    url      = "https://evtgen.hepforge.org/downloads?f=EvtGen-02.00.00.tar.gz"
+    url      = "https://vavolkl.web.cern.ch/vavolkl/evtgen-02-01-00.tar.gz"
 
     tags = ['hep']
 
     maintainers = ['vvolkl']
 
+    version('02-01-00', sha256='8533162a7307c582a7d9995cdd673254657407febb5229c7032b18434f194c6d')
     version('02.00.00', sha256='02372308e1261b8369d10538a3aa65fe60728ab343fcb64b224dac7313deb719')
     # switched to cmake in 02.00.00
     version('01.07.00', sha256='2648f1e2be5f11568d589d2079f22f589c283a2960390bbdb8d9d7f71bc9c014', deprecated=True)

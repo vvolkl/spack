@@ -211,7 +211,7 @@ class Boost(Package):
     patch('boost_11856.patch', when='@1.60.0%gcc@4.4.7')
 
     # Patch fix from https://svn.boost.org/trac/boost/ticket/11120
-    patch('python_jam.patch', when='@1.56.0: ^python@3:')
+    patch('python_jam.patch', when='@1.56.0:1.76 ^python@3:')
     patch('python_jam_pre156.patch', when='@:1.55.0 ^python@3:')
 
     # Patch fix for IBM XL compiler

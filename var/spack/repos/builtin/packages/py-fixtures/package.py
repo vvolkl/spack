@@ -15,3 +15,5 @@ class PyFixtures(PythonPackage):
     version('3.0.0', sha256='fcf0d60234f1544da717a9738325812de1f42c2fa085e2d9252d8fff5712b2ef')
 
     depends_on('py-setuptools', type='build')
+    depends_on('py-pip', type='build')
+

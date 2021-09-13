@@ -18,3 +18,4 @@ class PyUnittest2(PythonPackage):
     depends_on('py-traceback2', type=('build', 'run'))
     depends_on('py-six@1.4:', type=('build', 'run'))
     depends_on('py-argparse', type=('build', 'run'))
+    depends_on('py-pip', type=('build', 'run'))
