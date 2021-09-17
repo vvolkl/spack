@@ -31,4 +31,5 @@ class PyAwkward(PythonPackage):
     depends_on('py-pybind11', type=('build', 'link'))
     depends_on('dlpack', when="@1.0.0:")
     depends_on('rapidjson')
+    depends_on('py-pyyaml')
     depends_on('cmake', type='build')

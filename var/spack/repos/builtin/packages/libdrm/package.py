@@ -24,6 +24,13 @@ class Libdrm(AutotoolsPackage):
     depends_on('libpciaccess@0.10:')
     depends_on('libpthread-stubs')
 
+    def flag_handler(self, name, flags):
+        if name == "cflags":
+          flags.append('-fcommon')
+
+        return (flags, None, None)
+
+
     def configure_args(self):
         args = []
         args.append('--enable-static')
@@ -31,6 +38,6 @@ class Libdrm(AutotoolsPackage):
             # Needed to fix build for spack/spack#1740, but breaks newer
             # builds/compilers
             args.append('LIBS=-lrt')
-        if self.spec.satisfies('%gcc@10.0.0:'):
+        if self.spec.satisfies('%gcc@10.0.0:') or self.spec.satisfies('clang@11.0.0:'):
             args.append('CFLAGS=-fcommon')
         return args

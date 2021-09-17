@@ -34,6 +34,7 @@ class Vbfnlo(AutotoolsPackage):
     depends_on('autoconf', type='build')
     depends_on('m4', type='build')
     depends_on('libtool', type='build')
+    depends_on('zlib')
 
     @when('@2.7.1')
     def setup_build_environment(self, env):

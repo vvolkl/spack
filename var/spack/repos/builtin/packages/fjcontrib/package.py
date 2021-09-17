@@ -73,6 +73,7 @@ class Fjcontrib(AutotoolsPackage):
         args = ['--fastjet-config=' +
                 self.spec['fastjet'].prefix.bin +
                 '/fastjet-config',
+                "CXX=c++",
                 "CXXFLAGS=-O3 -Wall -g " +
                 self.compiler.cxx_pic_flag]
         return args
