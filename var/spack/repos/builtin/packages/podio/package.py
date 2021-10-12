@@ -10,7 +10,7 @@ class Podio(CMakePackage):
 
     homepage = "https://github.com/AIDASoft/podio"
     url      = "https://github.com/AIDASoft/podio/archive/v00-09-02.tar.gz"
-    git      = "https://github.com/AIDASoft/podio.git"
+    git      = "https://github.com/aidasoft/podio.git"
 
     maintainers = ['vvolkl', 'drbenmorgan']
 
@@ -45,10 +45,12 @@ class Podio(CMakePackage):
     depends_on('py-jinja2@2.10.1:', type=('build', 'run'), when='@0.12.0:')
     depends_on('sio', type=('build', 'link'), when='+sio')
 
+
     conflicts('+sio', when='@:0.12', msg='sio support requires at least podio@0.13')
 
     def cmake_args(self):
         args = [
+            '-DBUILD_TESTING=OFF',
             self.define_from_variant('ENABLE_SIO', 'sio')
         ]
         return args
