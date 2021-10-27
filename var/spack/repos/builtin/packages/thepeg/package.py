@@ -65,7 +65,7 @@ class Thepeg(AutotoolsPackage):
     conflicts('hepmc=3', when='@:2.1', msg='HepMC3 support was added in 2.2.0')
     depends_on('fastjet', when='@2.0.0:')
     depends_on('rivet', when='@2.0.3:')
-    depends_on('boost', when='@2.1.1:')
+    depends_on('boost', when='@:2.1.999')
 
     depends_on('autoconf', type='build')
     depends_on('automake', type='build')

@@ -52,3 +52,8 @@ class Herwigpp(AutotoolsPackage):
             join_path(self.stage.source_path,
                       'Contrib', 'AlpGen', 'BasicLesHouchesFileReader.so'),
             join_path(prefix.lib, 'Herwig++', 'BasicLesHouchesFileReader.so'))
+
+    def setup_build_environment(self, env):
+        thepeg_home = self.spec['thepeg'].prefix
+        env.prepend_path('LD_LIBRARY_PATH', thepeg_home.lib.ThePEG)
+

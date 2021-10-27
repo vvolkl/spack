@@ -60,3 +60,5 @@ class PyIpykernel(PythonPackage):
         """ install the Jupyter kernel spec """
         self.spec['python'].command(
             '-m', 'ipykernel', 'install', '--prefix=' + prefix)
+        self.spec['python'].command(
+            '-m', 'ipykernel', 'install', '--name bash' , '--prefix=' + prefix)
