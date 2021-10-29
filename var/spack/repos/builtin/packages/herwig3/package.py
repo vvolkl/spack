@@ -3,8 +3,6 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-import shutil
-
 from spack import *
 
 
@@ -41,17 +39,6 @@ class Herwig3(AutotoolsPackage):
     def autoreconf(self, spec, prefix):
         autoreconf('--install', '--verbose', '--force')
 
-    @run_before('build')
-    def install_lhapdfsets(self):
-        mkdirp(self.prefix.tmppdfsets)
-        lhapdf = which('lhapdf')
-        if self.spec.satisfies('@7.2.0:'):
-            lhapdf("--pdfdir=" + self.prefix.tmppdfsets,
-                   # "--source=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current",
-                   # "--listdir=/cvmfs/sft.cern.ch/lcg/external/lhapdfsets/current",
-                   "install", "MHT2014lo68cl", "MMHT2014nlo68cl",
-                   "CT14lo", "CT14nlo")
-
     def configure_args(self):
         args = ['--with-gsl=' + self.spec['gsl'].prefix,
                 '--with-thepeg=' + self.spec['thepeg'].prefix,
@@ -81,7 +68,6 @@ class Herwig3(AutotoolsPackage):
     def setup_build_environment(self, env):
         thepeg_home = self.spec['thepeg'].prefix
         env.prepend_path('LD_LIBRARY_PATH', thepeg_home.lib.ThePEG)
-        env.set('LHAPDF_DATA_PATH', self.prefix.tmppdfsets)
         env.set('HERWIGINCLUDE', '-I' + self.prefix.include)
         env.set('BOOSTINCLUDE', '-I' + self.spec['boost'].prefix.include)
         env.set('HERWIGINSTALL', self.prefix)
@@ -95,7 +81,3 @@ class Herwig3(AutotoolsPackage):
         make('install')
         with working_dir('MatrixElement/FxFx'):
             make('install')
-
-    @run_after('install')
-    def remove_lhapdfsets(self):
-        shutil.rmtree(self.prefix.tmppdfsets)
