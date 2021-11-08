@@ -158,6 +158,7 @@ class Acts(CMakePackage, CudaPackage):
     depends_on('py-pytest', when='+python +unit_tests')
     depends_on('root @6.10: cxxstd=14', when='+tgeo @:0.8.0')
     depends_on('root @6.20: cxxstd=17', when='+tgeo @0.8.1:')
+    depends_on('git-lfs', type='build')
 
     # Some variant combinations do not make sense
     conflicts('+autodiff', when='@:1.01')

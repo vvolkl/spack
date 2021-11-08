@@ -70,6 +70,7 @@ class Yoda(AutotoolsPackage):
     depends_on('py-cython@0.24:', type='build', when='@1.8.0:')
     depends_on('py-matplotlib', when='@1.3.0:', type=('build', 'run'))
     depends_on('root', type=('build', 'link', 'run'), when='+root')
+    depends_on('zlib')
 
     patch('yoda-1.5.5.patch', level=0, when='@1.5.5')
     patch('yoda-1.5.9.patch', level=0, when='@1.5.9')
@@ -91,5 +92,7 @@ class Yoda(AutotoolsPackage):
             args.append('--with-boost=' + self.spec['boost'].prefix)
 
         args.extend(self.enable_or_disable('root'))
+
+        args.append('--with-zlib=' + self.spec['zlib'].prefix)
 
         return args

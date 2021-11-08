@@ -16,6 +16,7 @@ class Gaudi(CMakePackage):
     tags = ['hep']
 
     version('master', branch='master')
+    version('36.2', sha256='a1b4bb597941a7a5b8d60382674f0b4ca5349c540471cd3d4454efbe7b9a09b9')
     version('36.0', sha256='8a0458cef5b616532f9db7cca9fa0e892e602b64c9e93dc0cc6d972e03034830')
     version('35.0', sha256='c01b822f9592a7bf875b9997cbeb3c94dea97cb13d523c12649dbbf5d69b5fa6')
     version('34.0', sha256='28fc4abb5a6b08da5a6b1300451c7e8487f918b055939877219d454abf7668ae')
@@ -27,6 +28,10 @@ class Gaudi(CMakePackage):
     version('30.5',    commit='2c70e73ee5b543b26197b90dd59ea4e4d359d230')
 
     maintainers = ['drbenmorgan', "vvolkl"]
+
+    parallel = False
+
+    #generator = 'Ninja'
 
     variant('optional', default=False,
             description='Build most optional components and tests')
@@ -50,6 +55,7 @@ class Gaudi(CMakePackage):
     depends_on('fmt', when='@33.2:')
     depends_on('intel-tbb')
     depends_on('uuid')
+    depends_on('ninja', type='build')
     depends_on('nlohmann-json', when="@35.0:")
     depends_on('python', type=('build', 'run'))
     depends_on('python@:3.7', when='@32.2:34', type=('build', 'run'))
@@ -79,6 +85,7 @@ class Gaudi(CMakePackage):
     depends_on('py-networkx', when='+optional ^python@3.0.0:')
     depends_on('py-setuptools', when='+optional')
     depends_on('py-nose', when='+optional')
+    depends_on('py-pytest', when='+optional')
     depends_on('relax', when='@:33 +optional')
     depends_on('xerces-c', when='+optional')
     # NOTE: pocl cannot be added as a minimal OpenCL implementation because
