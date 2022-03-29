@@ -24,7 +24,7 @@ class Rapidjson(CMakePackage):
     )
     version(
         "1.1.0",
-        sha256="bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e",
+        sha256="bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e", preferred=True,
     )
     version(
         "1.0.2",
