@@ -180,7 +180,7 @@ class Root(CMakePackage):
     variant('veccore', default=False,
             description='Enable support for VecCore SIMD abstraction library')
     variant('vmc', default=False,
-            description='Enable the Virtual Monte Carlo interface')
+            description='Enable the Virtual Monte Carlo interface. Note: ignored from 6.26.0')
     variant('x', default=True,
             description='Enable set of graphical options')
     variant('xml', default=True,
@@ -531,7 +531,6 @@ class Root(CMakePackage):
             define_from_variant('vc'),
             define_from_variant('vdt'),
             define_from_variant('veccore'),
-            define_from_variant('vmc'),
             define_from_variant('webui', 'root7'),  # requires root7
             define_from_variant('x11', 'x'),
             define_from_variant('xft', 'x'),
@@ -540,6 +539,8 @@ class Root(CMakePackage):
         ]
 
         # Some special features
+        if self.spec.satisfies('@:6.24.06'):
+            define_from_variant('vmc')
         if self.spec.satisfies('@6.20.02:'):
             options.append(define_from_variant('pyroot', 'python'))
         else:
