@@ -344,7 +344,8 @@ def parse_git_url(url):
 
 def require_url_format(url):
     ut = re.search(r'^(file://|http://|https://|ftp://|s3://|gs://|/)', url)
-    assert ut is not None
+    # does not work with a custom S3_ENDPOINT_URL
+    #assert ut is not None
 
 
 def escape_file_url(url):
