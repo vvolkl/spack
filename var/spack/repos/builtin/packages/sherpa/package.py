@@ -101,6 +101,10 @@ class Sherpa(AutotoolsPackage):
         filter_file(r'#include <sys/sysctl.h>',
                     '#ifdef ARCH_DARWIN\n#include <sys/sysctl.h>\n#endif',
                     'ATOOLS/Org/Run_Parameter.C')
+        filter_file(r'#include "recola.h"',
+                    '#include "recola.hpp"',
+                    'AddOns/Recola/Recola_Interface.H',
+                    string=True)
 
     def configure_args(self):
         args = []
