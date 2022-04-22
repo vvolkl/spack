@@ -5,9 +5,9 @@
 
 from spack import *
 
-from spack.pkg.k4.key4hep_stack import Key4hepPackage
+#from spack.pkg.k4.key4hep_stack import Key4hepPackage
 
-class K4edm4hep2lcioconv(CMakePackage, Key4hepPackage):
+class K4edm4hep2lcioconv(CMakePackage):
     """Converter library between EDM4hep and LCIO"""
 
     homepage = "https://github.com/key4hep/k4EDM4hep2LcioConv"
