@@ -78,3 +78,10 @@ class Alpaka(CMakePackage, CudaPackage):
         # need to define, as it is explicitly declared as an option by alpaka:
         args.append(self.define("BUILD_TESTING", self.run_tests))
         return args
+
+    def setup_run_environment(self, env):
+        env.set("ALPAKA", self.prefix)
+
+    def setup_dependent_build_environment(self, env, dependent_spec):
+        env.set("ALPAKA", self.prefix)
+        env.prepend_path("CPATH", self.prefix.include)

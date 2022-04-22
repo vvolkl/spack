@@ -40,3 +40,4 @@ class Cupla(Package):
         env.set("CUPLA_ROOT", self.prefix)
         env.prepend_path("CMAKE_PREFIX_PATH", self.prefix)
         env.set("CUPLA", self.prefix.share.cupla)
+        env.prepend_path("CPATH", self.prefix.include)
