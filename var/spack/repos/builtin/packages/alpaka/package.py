@@ -81,6 +81,7 @@ class Alpaka(CMakePackage, CudaPackage):
 
     def setup_run_environment(self, env):
         env.set("ALPAKA", self.prefix)
+        env.prepend_path("CPATH", self.prefix.include)
 
     def setup_dependent_build_environment(self, env, dependent_spec):
         env.set("ALPAKA", self.prefix)
