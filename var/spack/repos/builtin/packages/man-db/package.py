@@ -38,6 +38,7 @@ class ManDb(AutotoolsPackage):
     # workaround for the installation of libraries to `lib/man-db/`
     def setup_run_environment(self, env):
         env.prepend_path('LD_LIBRARY_PATH', join_path(self.prefix.lib, "man-db"))
+        env.prepend_path('PATH', self.prefix.bin) # todo: shouldn't be necessary ...
 
     def configure_args(self):
         args = [
