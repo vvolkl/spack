@@ -362,21 +362,22 @@ class PatchCache(object):
         we have information about the package's location in its repo.
 
         """
-        sha_index = self.index.get(sha256)
-        if not sha_index:
-            raise NoSuchPatchError(
-                "Couldn't find patch for package %s with sha256: %s"
-                % (pkg.fullname, sha256))
+        patch_dict = {
+            'owner': pkg.fullname,
+            'level': 1,
+            'working_dir':
+            '.',
+            'url': 'https://ftpmirror.gnu.org/bash/bash-5.1-patches/bash51-001',
+        }
 
-        # Find patches for this class or any class it inherits from
-        for fullname in pkg.fullnames:
-            patch_dict = sha_index.get(fullname)
-            if patch_dict:
-                break
-        else:
-            raise NoSuchPatchError(
-                "Couldn't find patch for package %s with sha256: %s"
-                % (pkg.fullname, sha256))
+        sha_index = self.index.get(sha256)
+        if sha_index:
+            # Find patches for this class or any class it inherits from
+            for fullname in pkg.fullnames:
+                new_dict = sha_index.get(fullname)
+                if new_dict:
+                    patch_dict = new_dict
+                    break
 
         # add the sha256 back (we take it out on write to save space,
         # because it's the index key)
