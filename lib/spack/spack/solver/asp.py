@@ -1875,6 +1875,7 @@ class SpecBuilder(object):
 
     def hash(self, pkg, h):
         if pkg not in self._specs:
+            concrete_spec = False
             try:
                 # try to get the candidate from the store
                 concrete_spec = spack.store.db.get_by_hash(h)[0]
