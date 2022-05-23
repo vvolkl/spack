@@ -631,7 +631,7 @@ class Root(CMakePackage):
         env.set('ROOTSYS', self.prefix)
         env.set('ROOT_VERSION', 'v{0}'.format(self.version.up_to(1)))
         env.prepend_path('PYTHONPATH', self.prefix.lib)
-        if '+vdt' self.spec:
+        if '+vdt' in self.spec:
           env.prepend_path("CPATH", self.spec['vdt'].prefix.include)
 
     def setup_dependent_build_environment(self, env, dependent_spec):
@@ -645,7 +645,7 @@ class Root(CMakePackage):
         env.prepend_path('LD_LIBRARY_PATH', dependent_spec.prefix.lib64)
         if "+rpath" not in self.spec:
             env.prepend_path('LD_LIBRARY_PATH', self.prefix.lib)
-        if '+vdt' self.spec:
+        if '+vdt' in self.spec:
           env.prepend_path("CPATH", self.spec['vdt'].prefix.include)
 
     def setup_dependent_run_environment(self, env, dependent_spec):
@@ -658,5 +658,5 @@ class Root(CMakePackage):
         env.prepend_path('LD_LIBRARY_PATH', dependent_spec.prefix.lib64)
         if "+rpath" not in self.spec:
             env.prepend_path('LD_LIBRARY_PATH', self.prefix.lib)
-        if '+vdt' self.spec:
+        if '+vdt' in self.spec:
           env.prepend_path("CPATH", self.spec['vdt'].prefix.include)
