@@ -34,7 +34,8 @@ class Baurmc(AutotoolsPackage):
 
     def configure_args(self):
         return [
-            '--userfflags=-fno-automatic',
+            "--userfflags=-fno-automatic",
+            "--userfflags=-Wno-argument-mismatch",
             '--enable-shared'
         ]
 
