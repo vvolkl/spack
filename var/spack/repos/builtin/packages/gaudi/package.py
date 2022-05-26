@@ -41,6 +41,8 @@ class Gaudi(CMakePackage):
     variant('vtune', default=False,
             description='Build with Intel VTune profiler support')
 
+    patch('https://gitlab.cern.ch/gaudi/Gaudi/-/merge_requests/1335.patch', when='@36.4:36.5',
+          sha256='dc9ce9e88f2b7ae812cf95655f1c62e1b0c6678572ee9718fd7c095da41a6fbd')
     # only build subdirectory GaudiExamples when +optional
     patch("build_testing.patch", when="@:34")
     # fixes for the cmake config which could not find newer boost versions
