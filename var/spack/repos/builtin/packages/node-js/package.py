@@ -21,7 +21,8 @@ class NodeJs(Package):
     maintainers = ['cosmicexplorer']
 
     # Current (latest features)
-    version('15.3.0',  sha256='cadfa384a5f14591b84ce07a1afe529f28deb0d43366fb0ae4e78afba96bfaf2')
+    version('18.2.0', sha256='bb9c117814341676edbfd7c79cfaaac2d809e760a65fe9afe050245d55bb7ca7')
+    version('15.3.0',  sha256='cadfa384a5f14591b84ce07a1afe529f28deb0d43366fb0ae4e78afba96bfaf2', preferred=True)
     version('14.16.1', sha256='5f5080427abddde7f22fd2ba77cd2b8a1f86253277a1eec54bc98a202728ce80')
     version('14.13.0', sha256='8538b2e76aa06ee0e6eb1c118426c3c5ca53b2e49d66591738eacf76e89edd61')
     version('14.10.0', sha256='7e0d7a1aa23697415e3588a1ca4f1c47496e6c88b9cf37c66be90353d3e4ac3e')
@@ -29,7 +30,7 @@ class NodeJs(Package):
     version('13.5.0',  sha256='4b8078d896a7550d7ed399c1b4ac9043e9f883be404d9b337185c8d8479f2db8')
 
     # LTS (recommended for most users)
-    version('14.15.1', sha256='a1120472bf55aea745287693a6651e16973e1008c9d6107df350126adf9716fe', preferred=True)
+    version('14.15.1', sha256='a1120472bf55aea745287693a6651e16973e1008c9d6107df350126adf9716fe')
     version('12.18.4', sha256='a802d87e579e46fc52771ed6f2667048320caca867be3276f4c4f1bbb41389c3')
     version('12.18.3', sha256='6ea85f80e01b007cc9b566b8836513bc5102667d833bad4c1092be60fa60c2d4')
     version('12.16.0', sha256='ae2dfe74485d821d4fef7cf1802acd2322cd994c853a2327c4306952f4453441')
