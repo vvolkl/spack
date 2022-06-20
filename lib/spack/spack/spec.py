@@ -4465,6 +4465,12 @@ class Spec(object):
                             fmt % transform(self, self.compiler.versions),
                             '%'
                         )
+                elif named_str in ['COMPILERVERMAJOR', 'COMPILERVERSIONMAJOR']:
+                    if self.compiler:
+                        write(
+                            fmt % transform(self, str(self.compiler.versions).split('.')[0]),
+                            '%'
+                        )
                 elif named_str == 'COMPILERFLAGS':
                     if self.compiler:
                         write(
