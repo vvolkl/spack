@@ -708,6 +708,7 @@ case "$mode" in
             append args_list "$linker_arg$dtags_to_add"
         fi
         extend args_list rpath_dirs_list "$rpath"
+        extend args_list rpath_dirs_list "-Wl,-rpath-link,"
         extend args_list system_rpath_dirs_list "$rpath"
         ;;
     ld)
@@ -715,9 +716,12 @@ case "$mode" in
             append args_list "$dtags_to_add"
         fi
         extend args_list rpath_dirs_list "-rpath${lsep}"
+        extend args_list rpath_dirs_list "-rpath-link${lsep}"
         extend args_list system_rpath_dirs_list "-rpath${lsep}"
         ;;
 esac
+
+#echo $args_list
 
 # Other arguments from the input command
 extend args_list other_args_list

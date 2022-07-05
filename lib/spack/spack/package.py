@@ -2751,7 +2751,7 @@ class PackageBase(six.with_metaclass(PackageMeta, PackageViewMixin, object)):
         """
         Get the rpath args as a string, with -Wl,-rpath, for each element
         """
-        return " ".join("-Wl,-rpath,%s" % p for p in self.rpath)
+        return " ".join("-Wl,-rpath,%s -Wl,-rpath-link,%s" % (p,p) for p in self.rpath)
 
     def _run_test_callbacks(self, method_names, callback_type='install'):
         """Tries to call all of the listed methods, returning immediately
