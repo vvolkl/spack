@@ -28,10 +28,7 @@ class Herwig3(AutotoolsPackage):
     depends_on('thepeg@2.2.3', when='@7.2.3')
     depends_on('evtgen')
 
-    # TODO: replace this with an explicit list of components of Boost,
-    # for instance depends_on('boost +filesystem')
-    # See https://github.com/spack/spack/pull/22303 for reference
-    depends_on(Boost.with_default_variants)
+    depends_on('boost +math+test')
     depends_on('python', type=('build', 'run'))
     depends_on('gsl')
     depends_on('fastjet')
