@@ -23,7 +23,7 @@ class Herwig3(AutotoolsPackage):
     depends_on('libtool',  type='build')
     depends_on('m4',       type='build')
     depends_on('lhapdf')
-    depends_on('lhapdfsets')
+    depends_on('lhapdfsets', type='build')
     depends_on('thepeg@2.2.1', when='@7.2.1')
     depends_on('thepeg@2.2.3', when='@7.2.3')
     depends_on('evtgen')
